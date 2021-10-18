@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Link from 'next/link'
 
 import api from '../services/api'
 
@@ -30,25 +31,26 @@ export default function PageOne() {
     }, [selectedType])
 
     return (
-        
-            <Container>
-                <NavBar>
-                    <h1>breweries</h1>
-                    <h3>A breweries list by Open Brewery DB</h3>
-                </NavBar>
+
+        <Container>
+            <NavBar>
+                <h1>breweries</h1>
+                <h3>A breweries list by Open Brewery DB</h3>
+            </NavBar>
 
 
-                <DropDown onChange={(tipo) => setSelectedType(tipo.target.value)}>
-                    {typesValues.map(type => (
-                        <option value={type}>{type}</option>
-                    ))}
-                </DropDown>
+            <DropDown onChange={(tipo) => setSelectedType(tipo.target.value)}>
+                {typesValues.map(type => (
+                    <option value={type}>{type}</option>
+                ))}
+            </DropDown>
 
-                {isLoading ? (
-                    <ContainerLoading>
-                        <Loading/>
-                    </ContainerLoading>
-                ) : (
+            {isLoading ? (
+                <ContainerLoading>
+                    <Loading />
+                </ContainerLoading>
+            ) : (
+                <Link href="/MadTree Brewing">
                     <Content>
                         {breweries.map(brewerie => (
                             <Card
@@ -61,8 +63,9 @@ export default function PageOne() {
                             />
                         ))}
                     </Content>
-                )}
-            </Container>
-        
+                </Link>
+            )}
+        </Container>
+
     )
 }
